@@ -1,0 +1,52 @@
+baseURL = "https://fchopo.github.io/"
+locale = "en-us"
+title = "Ferran Chopo"
+theme = "PaperMod"
+
+[pagination]
+  pagerSize = 10
+
+[params]
+  description = "Notes on Microsoft Copilot Studio and Azure AI Foundry"
+  author = "Ferran Chopo"
+  defaultTheme = "auto"
+  ShowReadingTime = true
+  ShowPostNavLinks = true
+  ShowBreadCrumbs = true
+  ShowCodeCopyButtons = true
+  ShowToc = true
+
+  [params.homeInfoParams]
+    Title = "Hi, I'm Ferran"
+    Content = "Microsoft MVP sharing practical knowledge about Copilot Studio and Azure AI Foundry."
+
+  [[params.socialIcons]]
+    name = "github"
+    url = "https://github.com/fchopo"
+  [[params.socialIcons]]
+    name = "linkedin"
+    url = "https://www.linkedin.com/in/fchopo"
+
+[menu]
+  [[menu.main]]
+    identifier = "posts"
+    name = "Posts"
+    url = "/posts/"
+    weight = 10
+  [[menu.main]]
+    identifier = "tags"
+    name = "Tags"
+    url = "/tags/"
+    weight = 20
+  [[menu.main]]
+    identifier = "about"
+    name = "About"
+    url = "/about/"
+    weight = 30
+
+[taxonomies]
+  tag = "tags"
+  category = "categories"
+
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
