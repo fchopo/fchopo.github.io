@@ -13,7 +13,7 @@ My recommendation is always the same: choose by owner first, then by technology.
 
 ## The experiment
 
-I wanted to see how two Microsoft platforms handle retrieval-augmented generation (RAG) when everything else is held constant. So I built the same agent twice, over the same documents, with the same model and the same instructions: once in **Copilot Studio** and once in **Microsoft Foundry**. Then I asked both agents the same 50 questions and read every answer.
+I wanted to see how two Microsoft platforms handle retrieval-augmented generation (RAG) when everything else is held constant. So I built the same agent twice, over the same documents, with the same model and the same instructions: once in **Copilot Studio**, using [Copilot Harness](https://learn.microsoft.com/en-us/microsoft-copilot-studio/agents-experience/overview?wt.mc_id=DX-MVP-5004680), and once in **Microsoft Foundry**. Then I asked both agents the same 50 questions and read every answer.
 
 Everything I used (agent instructions, settings, test set) is in the repository: **[fchopo/rag-copilot-studio-vs-foundry](https://github.com/fchopo/rag-copilot-studio-vs-foundry)**.
 
@@ -31,7 +31,7 @@ And this is the architecture of the Foundry agent:
 
 The agents work over a subset of Vectara’s [Open RAG Benchmark](https://huggingface.co/datasets/vectara/open_ragbench) (arXiv part, licensed CC BY-NC 4.0). It has 396 papers that the benchmark questions point to, plus 100 randomly sampled papers that no question points to, so the agents also have to ignore irrelevant material. That makes 496 PDFs, all stored in one SharePoint library. The questions are about scientific papers, and many of them depend on tables and exact numbers.
 
-Both agents use the GPT-6-Luna model and share the same instructions. These tell the agent to:
+Both agents use the [GPT-6-Luna](https://developers.openai.com/api/docs/models/gpt-6-luna) model and share the same instructions. These tell the agent to:
 
 - Search for every question and answer only from the retrieved papers
 - Give the direct answer first, report numbers exactly, and name the table
@@ -54,7 +54,7 @@ Benchmark questions measure retrieval and answer quality. They come straight fro
 
 Behaviour questions measure discipline: refusing, admitting a gap and correcting the user. They test whether the agent follows its instructions when the right move is *not* to answer normally.
 
-Both platforms offer automated evaluation, and I used it: Copilot Studio's [*General quality* and *Compare meaning*](https://learn.microsoft.com/en-us/microsoft-copilot-studio/analytics-agent-evaluation-overview?wt.mc_id=DX-MVP-5004680), and in Foundry [*Similarity*, *Response completeness*, *Relevance* and *Groundedness*](https://learn.microsoft.com/en-us/azure/foundry/concepts/built-in-evaluators?wt.mc_id=DX-MVP-5004680), judged by gpt-5.2.
+Both platforms offer automated evaluation, and I used it: Copilot Studio's [*General quality* and *Compare meaning*](https://learn.microsoft.com/en-us/microsoft-copilot-studio/analytics-agent-evaluation-overview?wt.mc_id=DX-MVP-5004680), and in Foundry [*Similarity*, *Response completeness*, *Relevance* and *Groundedness*](https://learn.microsoft.com/en-us/azure/foundry/concepts/built-in-evaluators?wt.mc_id=DX-MVP-5004680), judged by GPT-5.2.
 
 The automated scores were of limited use. Foundry’s judges were generous, averaging 4.6–4.9 out of 5, and at least 48 of 50 answers passed each evaluator. Only Groundedness clearly flagged the answer that came from memory. The judges also misjudged some correct answers:
 
